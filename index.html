@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DNF-Client</title>
+    <link href="contextmenu/jquery.contextmenu.css" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="css/styles.less"/>
+    <link rel="stylesheet/less" type="text/css" href="css/ner.less"/>
+    <link rel="stylesheet/less" type="text/css" href="css/input.less"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all"
+          rel="stylesheet" type="text/css"/>
+    <link href="themes/explorer-fa/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins/sortable.js" type="text/javascript"></script>
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <script src="js/locales/fr.js" type="text/javascript"></script>
+    <script src="js/locales/es.js" type="text/javascript"></script>
+    <script src="themes/explorer-fa/theme.js" type="text/javascript"></script>
+    <script src="themes/fa/theme.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            type="text/javascript"></script>
+</head>
+<body id="bootstrap-overwrite">
+
+<nav class="navbar fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Named-Entity-Recognition</a>
+</nav>
+
+
+<!--Input decision-->
+<div class="dnfdesc container">
+    <div class="row text-center">
+        <div class="col"><button id="desc-upload" type= "button" class="btn btn-dark fa fa-upload"></button></div>
+        <div  class="col"><button id="desc-edit" type= "button" class="btn btn-dark fa fa-edit"  ></button></div>
+    </div>
+    <div class="row text-center">
+        <div class="col">UPLOAD</div>
+        <div class="col">EDIT</div>
+    </div>
+</div>
+
+
+<!--Input-->
+<div class="container uploadForm dnfupload">
+    <form id="formId" enctype="multipart/form-data">
+        <div class="form-group">
+            <input name="file" id="file" type="file" multiple data-overwrite-initial="false">
+        </div>
+    </form>
+</div>
+
+<div class="dnfinput">
+    <div class="inputgrp container">
+        <h2>Text input</h2>
+        <p>Write your text in the form below and click submit:</p>
+        <div class="form-group">
+            <label for="textinput">Text:</label>
+            <textarea class="form-control" rows="20" id="textinput" name="textinput">Es waren emotionale Szenen bei „Dunja Hayali” am Mittwochabend im ZDF (hier in der Mediathek ansehen).
+Thema: „Abenteuer Alter – Lust am Lebenfabend oder Angst vor Armut?”
+
+Zu Gast: Anita Pixberg, 71 Jahre alt, eine Rentnerin, wie es sie viele in Deutschland gibt. Sie drehe jeden Cent zweimal um, erzählt sie.
+Sie hat 30 Jahre lang alf Teilzeitkraft im Einzelhandel gearbeitet, drei Kinder groß gezogen – und muss nun von einer kleinen Rente leben.
+Um sich etwaf dazuzuverdienen, kocht sie in einem Seniorentreff der Diakonie. Ohne die Arbeit würden ihr nur 200 Euro zum Leben bleiben. </textarea>
+            <br>
+            <button type="button" id="dnfsendinput" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+<!--Autocorrect-->
+
+<div class="dnfcorrect">
+    <div class="container">
+        <div class="text-center loadingdiv">
+            <div id="loadingCorrect" class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <h2 class="textinfo wordinfo">Autocorrect</h2>
+
+        <div class="wordinfobox">
+            <div class="textinfo wordinfo">Possible fracture OCR mistakes:</div>
+            <div class="fractureinfo wordinfo"></div>
+
+            <div class="textinfo wordinfo">Not found in dictionary:</div>
+            <div class="notinwbinfo wordinfo"></div>
+
+            <div class="textinfo wordinfo">Words found in dictionary:</div>
+            <div class="nomistake wordinfo"></div>
+        </div>
+        <div class="correctBtns">
+            <button type="button" id="autofractur" class="btn btn-primary">Auto fracture correct</button>
+            <button type="button" id="autocorrect" class="btn btn-primary">Autocorrect(beta)</button>
+        </div>
+        <pre>
+            <div class="a"></div>
+        </pre>
+
+        <div class="correctBtns">
+            <button type="button" id="toNER" class="btn btn-primary">Submit to NER</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!--NER Autoput-->
+<div class="dnfNER">
+    <div class="container">
+        <div class="text-center loadingdivNER">
+            <div id="loadingNER" class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+
+        <h2 id="ner-headline">Named Entity Recognition</h2>
+        <pre>
+            <div class="nerOutput"></div>
+        </pre>
+
+        <div class="dnf-download">
+            <button type="button" id="download-ner" class="btn btn-primary">Download XML</button>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer fixed-bottom">
+    <div class="container">
+        <span class="text-muted">Autocorrect and Named Entity Recognition web service for DNF.</span>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.7.1/less.min.js"></script>
+<script src="contextmenu/jquery.contextmenu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.min.js"></script>
+<script src="js/properties.js"></script>
+<script src="js/correction-request.js"></script>
+<script src="js/autocorrect.js"></script>
+<script src="js/ner-request.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/descision.js"></script>
+
+
+
+</body>
+</html>
