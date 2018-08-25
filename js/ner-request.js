@@ -42,8 +42,6 @@ $(document).ready(function () {
     });
 
 
-
-    
     function loading() {
         $(".dnfNER").fadeIn();
 

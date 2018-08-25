@@ -14,7 +14,7 @@ function saveToBlob(data, type){
 
     newContent = "";
     for (var i = 0; i < data.length; i++) {
-        newContent += String.fromCharCode(data.charCodeAt(i) & 0xFF); //solution code
+        newContent += String.fromCharCode(data.charCodeAt(i) & 0xFF);
     }
     var bytes = new Uint8Array(newContent.length);
     for (var i=0; i<newContent.length; i++) {
@@ -75,7 +75,7 @@ $(document).ready(function () {
             var xml;
 
             $.ajax({
-                url: upload_zip_request,
+                url: upload_txt_request,
                 type: 'POST',
                 data: new FormData(this),
                 dataType: 'xml',
@@ -195,6 +195,12 @@ $(document).ready(function () {
 
         console.log("trying to send ajax with: " + data);
 
+        $(".dnfupload").css("display","none");
+
+        $(".loading-zip-div").fadeIn();
+        $(".loading-zip-div").fadeIn("slow");
+        $(".loading-zip-div").fadeIn(10000);
+
         $.ajax({
             url: upload_zip_request,
             type: 'POST',
@@ -204,14 +210,21 @@ $(document).ready(function () {
             processData: false,
             contentType: false
         }).then(function (data) {
-
             //save results into blob
             saveToBlob(data, "application/zip");
 
+            $(".loading-zip-div").css("display","none");
+
+
             //download
-            $("#download-ner").on("click",function () {
+            $("#download-zip").on("click",function () {
                 downloadBlob(".zip");
             });
+
+
+            $(".dnf-zip-download").fadeIn();
+            $(".dnf-zip-download").fadeIn("slow");
+            $(".dnf-zip-download").fadeIn(10000);
 
         });
     }

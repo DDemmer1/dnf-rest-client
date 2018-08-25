@@ -1,7 +1,7 @@
 
 // Base URL for REST api
 
-var base_url = "http://localhost:8080/";
+var base_url = "http://localhost:9090/";
 
 
 

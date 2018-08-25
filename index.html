@@ -26,17 +26,40 @@
 </head>
 <body id="bootstrap-overwrite">
 
+<!------------------------Navbar---------------------------->
 <nav class="navbar fixed-top navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Named-Entity-Recognition</a>
 </nav>
 
 
-<!--Input decision-->
+<!----------------------------Input decision------------------------>
 <div class="dnfdesc container">
-    <div class="row text-center">
-        <div class="col"><button id="desc-upload" type= "button" class="btn btn-dark fa fa-upload"></button></div>
-        <div  class="col"><button id="desc-edit" type= "button" class="btn btn-dark fa fa-edit"  ></button></div>
+
+    <div class="row">
+        <h1>Named-entity Recognition Web Client</h1>
     </div>
+    <div class="row"><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+        amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+    <br>
+    <br>
+    <div class="row">
+        <h3>Upload a txt/zip file or manually enter a text:</h3>
+    </div>
+    <br>
+    <div class="row text-center">
+        <div class="col">
+            <button id="desc-upload" type="button" class="btn btn-dark fa fa-upload"></button>
+        </div>
+        <div class="col">
+            <button id="desc-edit" type="button" class="btn btn-dark fa fa-edit"></button>
+        </div>
+    </div>
+
+
     <div class="row text-center">
         <div class="col">UPLOAD</div>
         <div class="col">EDIT</div>
@@ -44,8 +67,9 @@
 </div>
 
 
-<!--Input-->
+<!-----------------------------Input-Upload-------------------------------->
 <div class="container uploadForm dnfupload">
+    <h2>ZIP/TXT Upload</h2>
     <form id="formId" enctype="multipart/form-data">
         <div class="form-group">
             <input name="file" id="file" type="file" multiple data-overwrite-initial="false">
@@ -53,6 +77,7 @@
     </form>
 </div>
 
+<!-----------------------------Input-Edit-------------------------------->
 <div class="dnfinput">
     <div class="inputgrp container">
         <h2>Text input</h2>
@@ -72,8 +97,7 @@ Um sich etwaf dazuzuverdienen, kocht sie in einem Seniorentreff der Diakonie. Oh
 </div>
 
 
-<!--Autocorrect-->
-
+<!-----------------------Autocorrect------------------------->
 <div class="dnfcorrect">
     <div class="container">
         <div class="text-center loadingdiv">
@@ -112,7 +136,7 @@ Um sich etwaf dazuzuverdienen, kocht sie in einem Seniorentreff der Diakonie. Oh
 </div>
 
 
-<!--NER Autoput-->
+<!------------------------NER-Single-Text-Output---------------------------->
 <div class="dnfNER">
     <div class="container">
         <div class="text-center loadingdivNER">
@@ -123,20 +147,32 @@ Um sich etwaf dazuzuverdienen, kocht sie in einem Seniorentreff der Diakonie. Oh
                 <div></div>
             </div>
         </div>
-
-
         <h2 id="ner-headline">Named Entity Recognition</h2>
         <pre>
             <div class="nerOutput"></div>
         </pre>
 
-        <div class="dnf-download">
-            <button type="button" id="download-ner" class="btn btn-primary">Download XML</button>
+        <div class="dnf-download ">
+            <button type="button" id="download-ner" class="btn btn-primary mx-auto">Download XML</button>
         </div>
     </div>
 </div>
 
+<!------------------------NER-ZIP-Output---------------------------->
+<div class="text-center loading-zip-div">
+    <div id="loading-zip-upload" class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="dnf-zip-download text-center">
+    <h2>Download your named-entity recognition result as ZIP file</h2>
+    <button type="button" id="download-zip" class="btn btn-primary text-center mx-auto">Download Results</button>
+</div>
 
+<!------------------------Footer---------------------------->
 <footer class="footer fixed-bottom">
     <div class="container">
         <span class="text-muted">Autocorrect and Named Entity Recognition web service for DNF.</span>
@@ -152,7 +188,6 @@ Um sich etwaf dazuzuverdienen, kocht sie in einem Seniorentreff der Diakonie. Oh
 <script src="js/ner-request.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/descision.js"></script>
-
 
 
 </body>
